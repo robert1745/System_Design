@@ -27,6 +27,16 @@ void notify(NotificationService* service){
     service->send("u123","Your ticket is booked!");
 }
 
+// The problem here is our Dummy Notification service throws error so it is not follwing LSP
+//  instead we can log that would be better, here its holding the promise
+class DummyNotification : public NotificationService {
+public:
+    void send(const string& userId, const string& message) override {
+        cout << "[Testing Environment] Notification skipped for " << userId << endl;
+    }
+};
+
+
 int main(){
 
     try{
